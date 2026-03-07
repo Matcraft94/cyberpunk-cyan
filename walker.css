@@ -1,0 +1,345 @@
+/* 🎨 Cyberpunk Cyan Theme for Walker - Enhanced Edition */
+
+/* ============================================
+   VARIABLES DE COLOR CYBERPUNK
+   ============================================ */
+@define-color window_bg_color #0a0a0f;
+@define-color accent_bg_color #00FFFF;
+@define-color accent_dim #00CCCC;
+@define-color theme_fg_color #e0f7ff;
+@define-color error_bg_color #ff2a6d;
+@define-color error_fg_color #ffffff;
+@define-color bg_light #12121a;
+@define-color bg_lighter #1a1a24;
+
+/* ============================================
+   RESET Y CONFIGURACIÓN BASE
+   ============================================ */
+* {
+  all: unset;
+  font-family: 'JetBrainsMono Nerd Font', monospace;
+}
+
+/* ============================================
+   VENTANA PRINCIPAL - GLASSMORPHISM
+   ============================================ */
+popover {
+  background: alpha(@window_bg_color, 0.95);
+  border: 2px solid @accent_bg_color;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 
+    0 0 40px alpha(@accent_bg_color, 0.3),
+    0 25px 50px rgba(0, 0, 0, 0.5),
+    inset 0 0 20px alpha(@accent_bg_color, 0.05);
+}
+
+/* ============================================
+   ICONOS
+   ============================================ */
+.normal-icons {
+  -gtk-icon-size: 20px;
+}
+
+.large-icons {
+  -gtk-icon-size: 40px;
+}
+
+/* ============================================
+   SCROLLBAR - OCULTA POR DEFECTO
+   ============================================ */
+scrollbar {
+  opacity: 0;
+}
+
+/* ============================================
+   CONTENEDOR PRINCIPAL - CON SOMBRA
+   ============================================ */
+.box-wrapper {
+  background: @window_bg_color;
+  padding: 25px;
+  border-radius: 18px;
+  border: 1px solid alpha(@accent_bg_color, 0.3);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 0 30px alpha(@accent_bg_color, 0.15);
+}
+
+/* ============================================
+   CONTENEDOR DE BÚSQUEDA
+   ============================================ */
+.search-container {
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+/* ============================================
+   INPUT FIELD - ESTILO TERMINAL
+   ============================================ */
+.input {
+  caret-color: @accent_bg_color;
+  background: alpha(@bg_light, 0.8);
+  padding: 15px 20px;
+  color: @theme_fg_color;
+  font-size: 16px;
+  border-radius: 12px;
+  border: 2px solid alpha(@accent_bg_color, 0.2);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.input placeholder {
+  opacity: 0.5;
+  color: alpha(@theme_fg_color, 0.6);
+  font-style: italic;
+}
+
+.input selection {
+  background: alpha(@accent_bg_color, 0.4);
+  color: @window_bg_color;
+}
+
+/* 🔥 EFECTO GLOW AL ESCRIBIR */
+.input:focus,
+.input:active {
+  border-color: @accent_bg_color;
+  box-shadow: 
+    inset 0 0 15px alpha(@accent_bg_color, 0.1),
+    0 0 20px alpha(@accent_bg_color, 0.3);
+}
+
+/* ============================================
+   PLACEHOLDER
+   ============================================ */
+.placeholder {
+  color: alpha(@theme_fg_color, 0.5);
+  font-size: 14px;
+}
+
+.preview-box,
+.elephant-hint {
+  color: @theme_fg_color;
+}
+
+/* ============================================
+   LISTA DE RESULTADOS
+   ============================================ */
+.list {
+  color: @theme_fg_color;
+  font-size: 14px;
+}
+
+.scroll {
+  margin-top: 10px;
+}
+
+/* ============================================
+   ITEMS DE LA LISTA
+   ============================================ */
+child {
+  margin: 4px 0;
+}
+
+.item-box {
+  border-radius: 10px;
+  padding: 12px 16px;
+  border-left: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+
+/* Hover sutil */
+child:hover .item-box {
+  background: alpha(@bg_lighter, 0.5);
+  border-left: 3px solid alpha(@accent_dim, 0.5);
+}
+
+/* ============================================
+   ITEM SELECCIONADO - EFECTO CYAN GLOW
+   ============================================ */
+child:selected .item-box,
+row:selected .item-box {
+  background: linear-gradient(90deg, alpha(@accent_bg_color, 0.2), alpha(@accent_bg_color, 0.05));
+  border-left: 3px solid @accent_bg_color;
+  box-shadow: 
+    0 0 20px alpha(@accent_bg_color, 0.2),
+    inset 0 0 10px alpha(@accent_bg_color, 0.05);
+}
+
+/* ============================================
+   TEXTOS DE ITEMS
+   ============================================ */
+.item-text-box {
+  font-weight: 500;
+}
+
+.item-subtext {
+  font-size: 11px;
+  opacity: 0.6;
+  color: alpha(@theme_fg_color, 0.7);
+}
+
+.providerlist .item-subtext {
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+/* ============================================
+   IMÁGENES Y EMOJIS
+   ============================================ */
+.item-image-text {
+  font-size: 32px;
+}
+
+.item-image {
+  margin-right: 12px;
+}
+
+/* ============================================
+   PREVIEW PANEL
+   ============================================ */
+.preview {
+  border: 1px solid alpha(@accent_bg_color, 0.25);
+  border-radius: 12px;
+  color: @theme_fg_color;
+  background: alpha(@bg_light, 0.5);
+  padding: 15px;
+  margin-top: 10px;
+}
+
+.preview .large-icons {
+  -gtk-icon-size: 72px;
+}
+
+/* ============================================
+   CALCULADORA
+   ============================================ */
+.calc .item-text {
+  font-size: 28px;
+  color: @accent_bg_color;
+  font-weight: bold;
+}
+
+.calc .item-subtext {
+  font-size: 14px;
+  color: alpha(@theme_fg_color, 0.6);
+}
+
+/* ============================================
+   SÍMBOLOS
+   ============================================ */
+.symbols .item-image {
+  font-size: 28px;
+  color: @accent_bg_color;
+}
+
+/* ============================================
+   TODO LIST
+   ============================================ */
+.todo.done .item-text-box {
+  opacity: 0.3;
+  text-decoration: line-through;
+}
+
+.todo.urgent {
+  color: @error_bg_color;
+  font-weight: bold;
+}
+
+.todo.active {
+  font-weight: bold;
+  color: @accent_bg_color;
+}
+
+/* ============================================
+   BLUETOOTH
+   ============================================ */
+.bluetooth.disconnected {
+  opacity: 0.4;
+}
+
+/* ============================================
+   KEYBINDS EN PIE DE PÁGINA
+   ============================================ */
+.keybinds {
+  padding-top: 15px;
+  margin-top: 15px;
+  border-top: 1px solid alpha(@accent_bg_color, 0.2);
+  font-size: 11px;
+  color: alpha(@theme_fg_color, 0.6);
+}
+
+.global-keybinds {
+  margin-right: 20px;
+}
+
+.item-keybinds {
+}
+
+.keybind {
+  margin: 2px 8px;
+}
+
+.keybind-button {
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.keybind-button:hover {
+  opacity: 1;
+  color: @accent_bg_color;
+}
+
+.keybind-bind {
+  text-transform: lowercase;
+  opacity: 0.4;
+}
+
+.keybind-label {
+  padding: 3px 6px;
+  border-radius: 5px;
+  border: 1px solid alpha(@accent_bg_color, 0.4);
+  background: alpha(@bg_light, 0.5);
+  font-family: 'JetBrainsMono Nerd Font', monospace;
+  font-size: 10px;
+}
+
+/* ============================================
+   ERRORES
+   ============================================ */
+.error {
+  padding: 15px;
+  background: alpha(@error_bg_color, 0.2);
+  color: @error_fg_color;
+  border: 1px solid @error_bg_color;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+/* ============================================
+   ESTADOS ESPECIALES
+   ============================================ */
+:not(.calc).current {
+  font-style: italic;
+  color: @accent_bg_color;
+}
+
+/* ============================================
+   CONTENIDO DE PREVIEW - PACKAGES
+   ============================================ */
+.preview-content.archlinuxpkgs,
+.preview-content.dnfpackages {
+  font-family: 'JetBrainsMono Nerd Font', monospace;
+  font-size: 13px;
+  background: alpha(@bg_light, 0.8);
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* ============================================
+   ACTIVACIÓN RÁPIDA
+   ============================================ */
+.item-quick-activation {
+  background: alpha(@accent_bg_color, 0.15);
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid alpha(@accent_bg_color, 0.3);
+}

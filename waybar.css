@@ -1,0 +1,9 @@
+/* 🎨 Cyberpunk Cyan Theme for Waybar */
+@define-color foreground #e0f7ff;
+@define-color background #0a0a0f;
+@define-color cyan #00FFFF;
+@define-color cyan-dim #00CCCC;
+@define-color pink #ff2a6d;
+@define-color green #39ff14;
+@define-color yellow #ffd700;
+@define-color purple #ff00ff;
