@@ -30,34 +30,70 @@ cp -r cyberpunk-cyan ~/.config/omarchy/themes/
 omarchy-theme-set cyberpunk-cyan
 ```
 
+## Recommended Ghostty Settings
+
+For the best cyberpunk experience, add to your `~/.config/ghostty/config`:
+
+```conf
+# Font
+font-family = "JetBrainsMono Nerd Font"
+font-style = Regular
+font-size = 9
+
+# Window
+window-theme = ghostty
+window-padding-x = 14
+window-padding-y = 14
+
+# Cursor
+cursor-style = "block"
+cursor-style-blink = false
+
+# Transparency effect (blur provided by Hyprland compositor)
+background-opacity = 0.85
+
+# Performance fix for Hyprland
+async-backend = epoll
+
+# Slowdown mouse scrolling
+mouse-scroll-multiplier = 0.95
+```
+
+**Customization:**
+- Opacity: `0.80-0.90` (lower = more transparent)
+- Font size: `8-11` (depending on screen size)
+- Padding: `10-16` (window spacing)
+
 ## Features
 
+- **Transparency & blur effects** - Recommended Ghostty opacity: 0.85 for cyberpunk glass effect
 - **Glassmorphism effects** in Walker app launcher with cyan glow
 - **Neon glow** on Waybar elements
 - **3-level urgency notifications** in Mako (green/cyan/pink)
 - **Terminal themes** for Alacritty, Kitty, and Ghostty
 - **Obsidian theme** included for note-taking
-- **11 cyberpunk wallpapers** in various resolutions (1080p to 5K)
+- **10 cyberpunk wallpapers** in various resolutions (1080p to 5K)
 - **Hyprlock** screen lock theme
 - **SwayOSD** on-screen display styling
 
 ## Wallpapers
 
-The theme includes 11 carefully selected cyberpunk-themed wallpapers:
+The theme includes 10 carefully selected cyberpunk-themed wallpapers:
+
+**Default:** `1369816.png` - Cyberpunk street scene (4K)
 
 | Wallpaper | Resolution | Description |
 |-----------|------------|-------------|
 | `matrix-digital-rain` | 6500x3520 | Digital rain effect with cyan tones |
-| `cyberpunk-city` | 3840x2160 | Cyberpunk 2077 cityscape |
-| `cyberpunk-female-v` | 3840x2160 | Cyberpunk 2077 Female V character art |
+| `cyberpunk-2077-5th` | 3840x2160 | Cyberpunk 2077 5th wallpaper |
 | `cyberpunk-v-gameplay` | 3840x2160 | Cyberpunk 2077 gameplay scene |
 | `hatsune-miku` | 3840x2160 | Hatsune Miku in cyberpunk style |
 | `hatsune-miku-radiant` | 5120x3066 | Hatsune Miku radiant 5K version |
-| `neon-city` | 2560x1572 | Neon-lit city street |
-| `cyberpunk-street` | 2912x1632 | Cyberpunk street scene |
-| `abstract-cyber` | 1920x1080 | Abstract cyberpunk artwork |
-| `landscape` | 1920x1200 | Cyberpunk landscape |
-| `minimal` | 1920x1080 | Minimal cyberpunk design |
+| `1369816.png` ⭐ | 4K | **Default** - Cyberpunk street scene |
+| `149972.jpg` | HD | Cyberpunk landscape |
+| `426401.jpg` | 1080p | Minimal cyberpunk design |
+| `693509.png` | 2560x1572 | Neon-lit city street |
+| `821174.jpg` | 1920x1080 | Abstract cyberpunk artwork |
 
 **Note:** Wallpapers are a compilation found from free sources online.
 

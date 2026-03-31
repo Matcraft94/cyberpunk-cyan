@@ -7,3 +7,9 @@
 @define-color green #39ff14;
 @define-color yellow #ffd700;
 @define-color purple #ff00ff;
+
+/* Barra inferior cyan con glow */
+window#waybar {
+  border-bottom: 2px solid @cyan;
+  box-shadow: 0 0 15px alpha(@cyan, 0.4);
+}

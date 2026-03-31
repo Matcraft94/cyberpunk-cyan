@@ -1,7 +1,7 @@
-/* 🎨 Cyberpunk Cyan Theme for Walker - Enhanced Edition */
+/* 🎨 Cyberpunk Cyan Theme for Walker - Terminal Style */
 
 /* ============================================
-   VARIABLES DE COLOR CYBERPUNK
+   VARIABLES DE COLOR CYBERPUNK (para compatibilidad)
    ============================================ */
 @define-color window_bg_color #0a0a0f;
 @define-color accent_bg_color #00FFFF;
@@ -12,120 +12,103 @@
 @define-color bg_light #12121a;
 @define-color bg_lighter #1a1a24;
 
+/* Variables para compatibilidad con tema omarchy-default */
+@define-color base #0a0a0f;
+@define-color border #00FFFF;
+@define-color text #e0f7ff;
+@define-color selected-text #00FFFF;
+@define-color background #0a0a0f;
+
 /* ============================================
    RESET Y CONFIGURACIÓN BASE
    ============================================ */
 * {
   all: unset;
   font-family: 'JetBrainsMono Nerd Font', monospace;
+  font-size: 11px;
+}
+
+* {
+  color: @text;
 }
 
 /* ============================================
-   VENTANA PRINCIPAL - GLASSMORPHISM
+   VENTANA PRINCIPAL - ESTILO TERMINAL CYBERPUNK
    ============================================ */
 popover {
-  background: alpha(@window_bg_color, 0.95);
-  border: 2px solid @accent_bg_color;
-  border-radius: 20px;
-  padding: 25px;
+  background: @base;
+  border: 2px solid @border;
+  border-radius: 8px;
   box-shadow: 
-    0 0 40px alpha(@accent_bg_color, 0.3),
-    0 25px 50px rgba(0, 0, 0, 0.5),
-    inset 0 0 20px alpha(@accent_bg_color, 0.05);
+    0 0 30px alpha(@border, 0.4),
+    0 10px 40px rgba(0, 0, 0, 0.6);
 }
 
 /* ============================================
-   ICONOS
+   ICONOS - REDUCIDO
    ============================================ */
 .normal-icons {
-  -gtk-icon-size: 20px;
+  -gtk-icon-size: 14px;
 }
 
 .large-icons {
-  -gtk-icon-size: 40px;
+  -gtk-icon-size: 24px;
 }
 
 /* ============================================
-   SCROLLBAR - OCULTA POR DEFECTO
+   SCROLLBAR
    ============================================ */
 scrollbar {
   opacity: 0;
 }
 
 /* ============================================
-   CONTENEDOR PRINCIPAL - CON SOMBRA
+   CONTENEDOR PRINCIPAL - COMPACTO
    ============================================ */
 .box-wrapper {
-  background: @window_bg_color;
-  padding: 25px;
-  border-radius: 18px;
-  border: 1px solid alpha(@accent_bg_color, 0.3);
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.6),
-    0 0 30px alpha(@accent_bg_color, 0.15);
+  background: @base;
+  padding: 12px;
+  border-radius: 6px;
 }
 
 /* ============================================
    CONTENEDOR DE BÚSQUEDA
    ============================================ */
 .search-container {
-  border-radius: 12px;
-  margin-bottom: 15px;
+  background: @bg_light;
+  padding: 10px;
+  border-radius: 4px;
+  border-bottom: 2px solid alpha(@border, 0.3);
+  margin-bottom: 10px;
 }
 
 /* ============================================
-   INPUT FIELD - ESTILO TERMINAL
+   INPUT FIELD - ESTILO TERMINAL COMPACTO
    ============================================ */
 .input {
   caret-color: @accent_bg_color;
-  background: alpha(@bg_light, 0.8);
-  padding: 15px 20px;
-  color: @theme_fg_color;
-  font-size: 16px;
-  border-radius: 12px;
-  border: 2px solid alpha(@accent_bg_color, 0.2);
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+  background: transparent;
+  color: @text;
+  font-size: 13px;
 }
 
 .input placeholder {
   opacity: 0.5;
-  color: alpha(@theme_fg_color, 0.6);
-  font-style: italic;
+  color: alpha(@text, 0.6);
 }
 
-.input selection {
-  background: alpha(@accent_bg_color, 0.4);
-  color: @window_bg_color;
-}
-
-/* 🔥 EFECTO GLOW AL ESCRIBIR */
 .input:focus,
 .input:active {
-  border-color: @accent_bg_color;
-  box-shadow: 
-    inset 0 0 15px alpha(@accent_bg_color, 0.1),
-    0 0 20px alpha(@accent_bg_color, 0.3);
+  box-shadow: none;
+  outline: none;
 }
 
 /* ============================================
-   PLACEHOLDER
-   ============================================ */
-.placeholder {
-  color: alpha(@theme_fg_color, 0.5);
-  font-size: 14px;
-}
-
-.preview-box,
-.elephant-hint {
-  color: @theme_fg_color;
-}
-
-/* ============================================
-   LISTA DE RESULTADOS
+   LISTA DE RESULTADOS - COMPACTO
    ============================================ */
 .list {
-  color: @theme_fg_color;
-  font-size: 14px;
+  color: @text;
+  font-size: 11px;
 }
 
 .scroll {
@@ -136,104 +119,140 @@ scrollbar {
    ITEMS DE LA LISTA
    ============================================ */
 child {
-  margin: 4px 0;
+  margin: 2px 0;
 }
 
 .item-box {
-  border-radius: 10px;
-  padding: 12px 16px;
-  border-left: 3px solid transparent;
-  transition: all 0.2s ease;
+  padding: 8px 10px;
+  border-left: 2px solid transparent;
+  border-radius: 3px;
+  transition: all 0.15s ease;
 }
 
-/* Hover sutil */
+/* Hover - cyan sutil */
 child:hover .item-box {
-  background: alpha(@bg_lighter, 0.5);
-  border-left: 3px solid alpha(@accent_dim, 0.5);
+  background: alpha(@border, 0.1);
+  border-left: 3px solid alpha(@border, 0.5);
 }
 
-/* ============================================
-   ITEM SELECCIONADO - EFECTO CYAN GLOW
-   ============================================ */
+/* Item seleccionado - estilo terminal */
 child:selected .item-box,
 row:selected .item-box {
-  background: linear-gradient(90deg, alpha(@accent_bg_color, 0.2), alpha(@accent_bg_color, 0.05));
-  border-left: 3px solid @accent_bg_color;
+  background: alpha(@border, 0.15);
+  border-left: 3px solid @border;
   box-shadow: 
-    0 0 20px alpha(@accent_bg_color, 0.2),
-    inset 0 0 10px alpha(@accent_bg_color, 0.05);
+    0 0 15px alpha(@border, 0.2),
+    inset 0 0 8px alpha(@border, 0.05);
+}
+
+child:selected .item-box * {
+  color: @selected-text;
 }
 
 /* ============================================
-   TEXTOS DE ITEMS
+   TEXTOS DE ITEMS - COMPACTO
    ============================================ */
 .item-text-box {
-  font-weight: 500;
+  padding: 6px 0;
+}
+
+.item-text {
+  color: @text;
 }
 
 .item-subtext {
-  font-size: 11px;
-  opacity: 0.6;
-  color: alpha(@theme_fg_color, 0.7);
-}
-
-.providerlist .item-subtext {
-  font-size: 12px;
-  opacity: 0.75;
+  font-size: 0px;
+  min-height: 0px;
+  margin: 0px;
+  padding: 0px;
 }
 
 /* ============================================
-   IMÁGENES Y EMOJIS
+   IMÁGENES - REDUCIDO
    ============================================ */
-.item-image-text {
-  font-size: 32px;
-}
-
 .item-image {
-  margin-right: 12px;
+  margin-right: 10px;
+  -gtk-icon-transform: scale(0.75);
 }
 
 /* ============================================
-   PREVIEW PANEL
+   ESTADOS ESPECIALES
+   ============================================ */
+.current {
+  font-style: italic;
+  color: @selected-text;
+}
+
+/* ============================================
+   KEYBINDS - COMPACTO
+   ============================================ */
+.keybind-hints {
+  background: @background;
+  padding: 8px;
+  margin-top: 8px;
+  border-top: 1px solid alpha(@border, 0.2);
+  font-size: 9px;
+}
+
+/* ============================================
+   PREVIEW - COMPACTO
    ============================================ */
 .preview {
-  border: 1px solid alpha(@accent_bg_color, 0.25);
-  border-radius: 12px;
-  color: @theme_fg_color;
+  border: 1px solid alpha(@border, 0.25);
+  border-radius: 6px;
+  color: @text;
   background: alpha(@bg_light, 0.5);
-  padding: 15px;
-  margin-top: 10px;
-}
-
-.preview .large-icons {
-  -gtk-icon-size: 72px;
+  padding: 10px;
+  margin-top: 8px;
+  font-size: 11px;
 }
 
 /* ============================================
-   CALCULADORA
+   CALCULADORA - REDUCIDO
    ============================================ */
 .calc .item-text {
-  font-size: 28px;
+  font-size: 20px;
   color: @accent_bg_color;
   font-weight: bold;
 }
 
-.calc .item-subtext {
-  font-size: 14px;
-  color: alpha(@theme_fg_color, 0.6);
-}
-
 /* ============================================
-   SÍMBOLOS
+   SÍMBOLOS - REDUCIDO
    ============================================ */
 .symbols .item-image {
-  font-size: 28px;
+  font-size: 20px;
   color: @accent_bg_color;
 }
 
 /* ============================================
-   TODO LIST
+   ERRORES - COMPACTO
    ============================================ */
+.error {
+  padding: 10px;
+  background: alpha(@error_bg_color, 0.2);
+  color: @error_fg_color;
+  border: 1px solid @error_bg_color;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+/* ============================================
+   ESTILOS ADICIONALES DEL TEMA ORIGINAL
+   ============================================ */
+
+/* Placeholder */
+.placeholder {
+  color: alpha(@theme_fg_color, 0.5);
+  font-size: 11px;
+}
+
+.preview-box,
+.elephant-hint {
+  color: @theme_fg_color;
+}
+
+/* TODO List */
 .todo.done .item-text-box {
   opacity: 0.3;
   text-decoration: line-through;
@@ -249,29 +268,18 @@ row:selected .item-box {
   color: @accent_bg_color;
 }
 
-/* ============================================
-   BLUETOOTH
-   ============================================ */
+/* Bluetooth */
 .bluetooth.disconnected {
   opacity: 0.4;
 }
 
-/* ============================================
-   KEYBINDS EN PIE DE PÁGINA
-   ============================================ */
+/* Keybinds detallados */
 .keybinds {
-  padding-top: 15px;
-  margin-top: 15px;
+  padding-top: 10px;
+  margin-top: 10px;
   border-top: 1px solid alpha(@accent_bg_color, 0.2);
-  font-size: 11px;
+  font-size: 9px;
   color: alpha(@theme_fg_color, 0.6);
-}
-
-.global-keybinds {
-  margin-right: 20px;
-}
-
-.item-keybinds {
 }
 
 .keybind {
@@ -288,58 +296,29 @@ row:selected .item-box {
   color: @accent_bg_color;
 }
 
-.keybind-bind {
-  text-transform: lowercase;
-  opacity: 0.4;
-}
-
 .keybind-label {
-  padding: 3px 6px;
-  border-radius: 5px;
+  padding: 2px 4px;
+  border-radius: 3px;
   border: 1px solid alpha(@accent_bg_color, 0.4);
   background: alpha(@bg_light, 0.5);
   font-family: 'JetBrainsMono Nerd Font', monospace;
-  font-size: 10px;
+  font-size: 9px;
 }
 
-/* ============================================
-   ERRORES
-   ============================================ */
-.error {
-  padding: 15px;
-  background: alpha(@error_bg_color, 0.2);
-  color: @error_fg_color;
-  border: 1px solid @error_bg_color;
-  border-radius: 10px;
-  font-weight: bold;
-}
-
-/* ============================================
-   ESTADOS ESPECIALES
-   ============================================ */
-:not(.calc).current {
-  font-style: italic;
-  color: @accent_bg_color;
-}
-
-/* ============================================
-   CONTENIDO DE PREVIEW - PACKAGES
-   ============================================ */
+/* Preview content */
 .preview-content.archlinuxpkgs,
 .preview-content.dnfpackages {
   font-family: 'JetBrainsMono Nerd Font', monospace;
-  font-size: 13px;
+  font-size: 11px;
   background: alpha(@bg_light, 0.8);
-  padding: 10px;
-  border-radius: 8px;
+  padding: 8px;
+  border-radius: 5px;
 }
 
-/* ============================================
-   ACTIVACIÓN RÁPIDA
-   ============================================ */
+/* Activación rápida */
 .item-quick-activation {
   background: alpha(@accent_bg_color, 0.15);
-  border-radius: 8px;
-  padding: 10px;
+  border-radius: 5px;
+  padding: 8px;
   border: 1px solid alpha(@accent_bg_color, 0.3);
 }
