@@ -1,6 +1,26 @@
 /* 🎨 Cyberpunk Cyan Theme for Walker - Terminal Style */
 
 /* ============================================
+   CYBERPUNK 2077 BRAINDANCE EFFECTS
+   ============================================ */
+
+/* Holographic flicker animation */
+@keyframes holo-flicker {
+    0%, 100% { opacity: 1; }
+    92% { opacity: 1; }
+    93% { opacity: 0.8; }
+    94% { opacity: 1; }
+    96% { opacity: 0.9; }
+    97% { opacity: 1; }
+}
+
+/* Data stream background animation */
+@keyframes data-stream {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 0% 100%; }
+}
+
+/* ============================================
    VARIABLES DE COLOR CYBERPUNK (para compatibilidad)
    ============================================ */
 @define-color window_bg_color #0a0a0f;
@@ -37,11 +57,16 @@
    ============================================ */
 popover {
   background: @base;
+  background-image:
+      linear-gradient(alpha(@border, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, alpha(@border, 0.08) 1px, transparent 1px);
+  background-size: 20px 20px;
   border: 2px solid @border;
   border-radius: 8px;
-  box-shadow: 
+  box-shadow:
     0 0 30px alpha(@border, 0.4),
     0 10px 40px rgba(0, 0, 0, 0.6);
+  animation: holo-flicker 4s infinite;
 }
 
 /* ============================================
@@ -109,6 +134,15 @@ scrollbar {
 .list {
   color: @text;
   font-size: 11px;
+  background-image: repeating-linear-gradient(
+    180deg,
+    transparent,
+    transparent 19px,
+    alpha(@border, 0.03) 19px,
+    alpha(@border, 0.03) 20px
+  );
+  background-size: 100% 20px;
+  animation: data-stream 20s linear infinite;
 }
 
 .scroll {
@@ -140,9 +174,11 @@ child:selected .item-box,
 row:selected .item-box {
   background: alpha(@border, 0.15);
   border-left: 3px solid @border;
-  box-shadow: 
-    0 0 15px alpha(@border, 0.2),
-    inset 0 0 8px alpha(@border, 0.05);
+  box-shadow:
+    0 0 20px alpha(@border, 0.3),
+    0 0 40px alpha(@border, 0.15),
+    -3px 0 10px alpha(@pink, 0.2),
+    3px 0 10px alpha(@cyan, 0.2);
 }
 
 child:selected .item-box * {
@@ -158,6 +194,14 @@ child:selected .item-box * {
 
 .item-text {
   color: @text;
+}
+
+/* Chromatic aberration on text */
+.child label,
+row label {
+  text-shadow:
+      -0.5px 0 alpha(@pink, 0.1),
+      0.5px 0 alpha(@cyan, 0.1);
 }
 
 .item-subtext {

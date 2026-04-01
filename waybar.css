@@ -8,8 +8,59 @@
 @define-color yellow #ffd700;
 @define-color purple #ff00ff;
 
-/* Barra inferior cyan con glow */
+/* ============================================
+   CYBERPUNK 2077 EFFECTS - GTK 3 COMPATIBLE
+   ============================================ */
+
+/* Enhanced neon glow with multiple layers */
 window#waybar {
-  border-bottom: 2px solid @cyan;
-  box-shadow: 0 0 15px alpha(@cyan, 0.4);
+    border-bottom: 2px solid @cyan;
+    box-shadow:
+        0 0 15px alpha(@cyan, 0.4),
+        0 0 30px alpha(@cyan, 0.2),
+        inset 0 -2px 8px alpha(@cyan, 0.15);
+}
+
+/* Subtle chromatic aberration on all text */
+window#waybar * {
+    text-shadow:
+        -1px 0 alpha(@pink, 0.12),
+        1px 0 alpha(@cyan, 0.12);
+}
+
+/* Hexagonal pattern background */
+window#waybar {
+    background-image:
+        repeating-linear-gradient(60deg, transparent, transparent 35px, alpha(@cyan, 0.015) 35px, alpha(@cyan, 0.015) 70px),
+        repeating-linear-gradient(0deg, transparent, transparent 35px, alpha(@cyan, 0.015) 35px, alpha(@cyan, 0.015) 70px);
+    background-size: 60px 70px;
+}
+
+/* Modules with intensified glow */
+#clock,
+#battery,
+#network {
+    transition: all 0.2s ease;
+}
+
+#clock:hover,
+#battery:hover,
+#network:hover {
+    text-shadow:
+        -2px 0 alpha(@pink, 0.2),
+        0 0 8px alpha(@cyan, 0.4),
+        2px 0 alpha(@cyan, 0.2);
+}
+
+/* Workspaces with neon effect when focused */
+#workspaces button.focused {
+    box-shadow:
+        0 0 10px alpha(@cyan, 0.5),
+        inset 0 0 5px alpha(@cyan, 0.1);
+}
+
+/* Simple animation for critical states - removed for GTK 3 compatibility */
+/* @keyframes not fully supported in GTK 3 - use static opacity instead */
+#battery.critical:not(.charging) {
+    opacity: 0.8;
 }
