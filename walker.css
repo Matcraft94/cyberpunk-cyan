@@ -4,24 +4,87 @@
    CYBERPUNK 2077 BRAINDANCE EFFECTS
    ============================================ */
 
-/* Holographic flicker animation */
-@keyframes holo-flicker {
-    0%, 100% { opacity: 1; }
-    92% { opacity: 1; }
-    93% { opacity: 0.8; }
-    94% { opacity: 1; }
-    96% { opacity: 0.9; }
-    97% { opacity: 1; }
-}
-
 /* Data stream background animation */
 @keyframes data-stream {
     0% { background-position: 0% 0%; }
     100% { background-position: 0% 100%; }
 }
 
+/* Glitch burst on items - opacity + color flash */
+@keyframes glitch-burst {
+    0%, 88%, 96%, 100% {
+        opacity: 1;
+    }
+    89% {
+        opacity: 0.7;
+        background: alpha(#ff2a6d, 0.15);
+    }
+    90% {
+        opacity: 0.95;
+        background: alpha(#00FFFF, 0.1);
+    }
+    91% {
+        opacity: 0.75;
+        background: alpha(#ff2a6d, 0.12);
+    }
+    92% {
+        opacity: 0.9;
+        background: transparent;
+    }
+    93% {
+        opacity: 0.7;
+        background: alpha(#00FFFF, 0.08);
+    }
+    94% {
+        opacity: 0.85;
+        background: alpha(#ff2a6d, 0.06);
+    }
+    95% {
+        opacity: 1;
+        background: transparent;
+    }
+}
+
+/* Selected item intense glitch */
+@keyframes glitch-selected {
+    0%, 85%, 97%, 100% {
+        opacity: 1;
+        background: alpha(#00FFFF, 0.15);
+    }
+    86% {
+        opacity: 0.6;
+        background: alpha(#ff2a6d, 0.25);
+    }
+    88% {
+        opacity: 0.9;
+        background: alpha(#00FFFF, 0.2);
+    }
+    90% {
+        opacity: 0.65;
+        background: alpha(#ff2a6d, 0.2);
+    }
+    92% {
+        opacity: 0.85;
+        background: alpha(#00FFFF, 0.12);
+    }
+    94% {
+        opacity: 0.7;
+        background: alpha(#ff2a6d, 0.15);
+    }
+    96% {
+        opacity: 1;
+        background: alpha(#00FFFF, 0.15);
+    }
+}
+
+/* Subtle flicker on items */
+@keyframes item-flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.93; }
+}
+
 /* ============================================
-   VARIABLES DE COLOR CYBERPUNK (para compatibilidad)
+   VARIABLES DE COLOR CYBERPUNK
    ============================================ */
 @define-color window_bg_color #0a0a0f;
 @define-color accent_bg_color #00FFFF;
@@ -38,6 +101,8 @@
 @define-color text #e0f7ff;
 @define-color selected-text #00FFFF;
 @define-color background #0a0a0f;
+@define-color pink #ff2a6d;
+@define-color cyan #00FFFF;
 
 /* ============================================
    RESET Y CONFIGURACIÓN BASE
@@ -65,12 +130,14 @@ popover {
   border-radius: 8px;
   box-shadow:
     0 0 30px alpha(@border, 0.4),
+    0 0 50px alpha(@border, 0.15),
+    -5px 0 15px alpha(@pink, 0.15),
+    5px 0 15px alpha(@cyan, 0.15),
     0 10px 40px rgba(0, 0, 0, 0.6);
-  animation: holo-flicker 4s infinite;
 }
 
 /* ============================================
-   ICONOS - REDUCIDO
+   ICONOS
    ============================================ */
 .normal-icons {
   -gtk-icon-size: 14px;
@@ -88,7 +155,7 @@ scrollbar {
 }
 
 /* ============================================
-   CONTENEDOR PRINCIPAL - COMPACTO
+   CONTENEDOR PRINCIPAL
    ============================================ */
 .box-wrapper {
   background: @base;
@@ -108,13 +175,16 @@ scrollbar {
 }
 
 /* ============================================
-   INPUT FIELD - ESTILO TERMINAL COMPACTO
+   INPUT FIELD
    ============================================ */
 .input {
   caret-color: @accent_bg_color;
   background: transparent;
   color: @text;
   font-size: 13px;
+  text-shadow:
+      -1px 0 alpha(@pink, 0.2),
+      1px 0 alpha(@cyan, 0.2);
 }
 
 .input placeholder {
@@ -129,20 +199,28 @@ scrollbar {
 }
 
 /* ============================================
-   LISTA DE RESULTADOS - COMPACTO
+   LISTA DE RESULTADOS - SCANLINES
    ============================================ */
 .list {
   color: @text;
   font-size: 11px;
-  background-image: repeating-linear-gradient(
-    180deg,
-    transparent,
-    transparent 19px,
-    alpha(@border, 0.03) 19px,
-    alpha(@border, 0.03) 20px
-  );
-  background-size: 100% 20px;
-  animation: data-stream 20s linear infinite;
+  background-image:
+    repeating-linear-gradient(
+      180deg,
+      transparent,
+      transparent 19px,
+      alpha(@border, 0.03) 19px,
+      alpha(@border, 0.03) 20px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      alpha(@border, 0.02) 2px,
+      transparent 4px
+    );
+  background-size: 100% 20px, 100% 4px;
+  animation: data-stream 6s linear infinite;
 }
 
 .scroll {
@@ -150,7 +228,7 @@ scrollbar {
 }
 
 /* ============================================
-   ITEMS DE LA LISTA
+   ITEMS DE LA LISTA - CON GLITCH ANIMATION
    ============================================ */
 child {
   margin: 2px 0;
@@ -161,6 +239,7 @@ child {
   border-left: 2px solid transparent;
   border-radius: 3px;
   transition: all 0.15s ease;
+  animation: item-flicker 1.5s ease-in-out infinite, glitch-burst 2.5s infinite;
 }
 
 /* Hover - cyan sutil */
@@ -169,16 +248,16 @@ child:hover .item-box {
   border-left: 3px solid alpha(@border, 0.5);
 }
 
-/* Item seleccionado - estilo terminal */
+/* Item seleccionado - glitch intenso */
 child:selected .item-box,
 row:selected .item-box {
-  background: alpha(@border, 0.15);
   border-left: 3px solid @border;
   box-shadow:
     0 0 20px alpha(@border, 0.3),
     0 0 40px alpha(@border, 0.15),
-    -3px 0 10px alpha(@pink, 0.2),
-    3px 0 10px alpha(@cyan, 0.2);
+    -5px 0 15px alpha(@pink, 0.3),
+    5px 0 15px alpha(@cyan, 0.3);
+  animation: glitch-selected 2s infinite;
 }
 
 child:selected .item-box * {
@@ -186,7 +265,7 @@ child:selected .item-box * {
 }
 
 /* ============================================
-   TEXTOS DE ITEMS - COMPACTO
+   TEXTOS - ABERRACIÓN CROMÁTICA
    ============================================ */
 .item-text-box {
   padding: 6px 0;
@@ -196,12 +275,13 @@ child:selected .item-box * {
   color: @text;
 }
 
-/* Chromatic aberration on text */
+/* Intensified chromatic aberration */
 .child label,
 row label {
   text-shadow:
-      -0.5px 0 alpha(@pink, 0.1),
-      0.5px 0 alpha(@cyan, 0.1);
+      -1.5px 0 alpha(@pink, 0.25),
+      1.5px 0 alpha(@cyan, 0.25),
+      0 0 4px alpha(@cyan, 0.12);
 }
 
 .item-subtext {
@@ -212,7 +292,7 @@ row label {
 }
 
 /* ============================================
-   IMÁGENES - REDUCIDO
+   IMÁGENES
    ============================================ */
 .item-image {
   margin-right: 10px;
@@ -228,7 +308,7 @@ row label {
 }
 
 /* ============================================
-   KEYBINDS - COMPACTO
+   KEYBINDS
    ============================================ */
 .keybind-hints {
   background: @background;
@@ -239,7 +319,7 @@ row label {
 }
 
 /* ============================================
-   PREVIEW - COMPACTO
+   PREVIEW
    ============================================ */
 .preview {
   border: 1px solid alpha(@border, 0.25);
@@ -252,7 +332,7 @@ row label {
 }
 
 /* ============================================
-   CALCULADORA - REDUCIDO
+   CALCULADORA
    ============================================ */
 .calc .item-text {
   font-size: 20px;
@@ -261,7 +341,7 @@ row label {
 }
 
 /* ============================================
-   SÍMBOLOS - REDUCIDO
+   SÍMBOLOS
    ============================================ */
 .symbols .item-image {
   font-size: 20px;
@@ -269,7 +349,7 @@ row label {
 }
 
 /* ============================================
-   ERRORES - COMPACTO
+   ERRORES
    ============================================ */
 .error {
   padding: 10px;
@@ -282,7 +362,7 @@ row label {
 }
 
 /* ============================================
-   ESTILOS ADICIONALES DEL TEMA ORIGINAL
+   ESTILOS ADICIONALES
    ============================================ */
 
 /* Placeholder */

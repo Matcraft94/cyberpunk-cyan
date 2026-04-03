@@ -18,38 +18,42 @@ window#waybar {
     box-shadow:
         0 0 15px alpha(@cyan, 0.4),
         0 0 30px alpha(@cyan, 0.2),
+        0 0 60px alpha(@cyan, 0.08),
         inset 0 -2px 8px alpha(@cyan, 0.15);
 }
 
-/* Subtle chromatic aberration on all text */
+/* Chromatic aberration on all text - intensified */
 window#waybar * {
     text-shadow:
-        -1px 0 alpha(@pink, 0.12),
-        1px 0 alpha(@cyan, 0.12);
+        -1.5px 0 alpha(@pink, 0.18),
+        1.5px 0 alpha(@cyan, 0.18),
+        0 0 4px alpha(@cyan, 0.08);
 }
 
-/* Hexagonal pattern background */
+/* Denser hexagonal pattern background */
 window#waybar {
     background-image:
-        repeating-linear-gradient(60deg, transparent, transparent 35px, alpha(@cyan, 0.015) 35px, alpha(@cyan, 0.015) 70px),
-        repeating-linear-gradient(0deg, transparent, transparent 35px, alpha(@cyan, 0.015) 35px, alpha(@cyan, 0.015) 70px);
-    background-size: 60px 70px;
+        repeating-linear-gradient(60deg, transparent, transparent 25px, alpha(@cyan, 0.02) 25px, alpha(@cyan, 0.02) 50px),
+        repeating-linear-gradient(-60deg, transparent, transparent 25px, alpha(@cyan, 0.015) 25px, alpha(@cyan, 0.015) 50px),
+        repeating-linear-gradient(0deg, transparent, transparent 25px, alpha(@cyan, 0.015) 25px, alpha(@cyan, 0.015) 50px);
+    background-size: 50px 50px;
 }
 
-/* Modules with intensified glow */
+/* Modules with glitch snap transition */
 #clock,
 #battery,
 #network {
-    transition: all 0.2s ease;
+    transition: all 0.2s steps(2);
 }
 
 #clock:hover,
 #battery:hover,
 #network:hover {
     text-shadow:
-        -2px 0 alpha(@pink, 0.2),
-        0 0 8px alpha(@cyan, 0.4),
-        2px 0 alpha(@cyan, 0.2);
+        -2px 0 alpha(@pink, 0.25),
+        0 0 8px alpha(@cyan, 0.5),
+        0 0 16px alpha(@cyan, 0.2),
+        2px 0 alpha(@cyan, 0.25);
 }
 
 /* Workspaces with neon effect when focused */
@@ -59,8 +63,12 @@ window#waybar {
         inset 0 0 5px alpha(@cyan, 0.1);
 }
 
-/* Simple animation for critical states - removed for GTK 3 compatibility */
-/* @keyframes not fully supported in GTK 3 - use static opacity instead */
+/* Critical battery - intense pink warning */
 #battery.critical:not(.charging) {
-    opacity: 0.8;
+    color: @pink;
+    text-shadow:
+        0 0 8px alpha(@pink, 0.6),
+        0 0 16px alpha(@pink, 0.3),
+        -1px 0 alpha(@pink, 0.4),
+        1px 0 alpha(@pink, 0.4);
 }
