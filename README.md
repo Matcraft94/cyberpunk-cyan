@@ -72,28 +72,29 @@ mouse-scroll-multiplier = 0.95
 - **3-level urgency notifications** in Mako (green/cyan/pink)
 - **Terminal themes** for Alacritty, Kitty, and Ghostty
 - **Obsidian theme** included for note-taking
-- **10 cyberpunk wallpapers** in various resolutions (1080p to 5K)
+- **11 unique cyberpunk wallpapers** in various resolutions (1080p to 5K)
 - **Hyprlock** screen lock theme
 - **SwayOSD** on-screen display styling
 
 ## Wallpapers
 
-The theme includes 10 carefully selected cyberpunk-themed wallpapers:
+The theme includes 11 unique carefully selected cyberpunk-themed wallpapers:
 
 **Default:** `1369816.png` - Cyberpunk street scene (4K)
 
 | Wallpaper | Resolution | Description |
 |-----------|------------|-------------|
-| `matrix-digital-rain` | 6500x3520 | Digital rain effect with cyan tones |
-| `cyberpunk-2077-5th` | 3840x2160 | Cyberpunk 2077 5th wallpaper |
-| `cyberpunk-v-gameplay` | 3840x2160 | Cyberpunk 2077 gameplay scene |
-| `hatsune-miku` | 3840x2160 | Hatsune Miku in cyberpunk style |
-| `hatsune-miku-radiant` | 5120x3066 | Hatsune Miku radiant 5K version |
 | `1369816.png` ⭐ | 4K | **Default** - Cyberpunk street scene |
 | `149972.jpg` | HD | Cyberpunk landscape |
 | `426401.jpg` | 1080p | Minimal cyberpunk design |
 | `693509.png` | 2560x1572 | Neon-lit city street |
 | `821174.jpg` | 1920x1080 | Abstract cyberpunk artwork |
+| `cyberpunk-2077-5th-3840x2160-24843.jpg` | 3840x2160 | Cyberpunk 2077 5th anniversary |
+| `cyberpunk-2077-female-v-2020-games-xbox-series-x-3840x2160-540.jpg` | 3840x2160 | Female V character art |
+| `cyberpunk-v-gameplay-3840x2160.jpg` | 3840x2160 | Female V gameplay scene |
+| `hatsune-miku-3840x2160.jpg` | 3840x2160 | Hatsune Miku cyberpunk style |
+| `hatsune-miku-radiant-5120x3066.jpg` | 5120x3066 | Hatsune Miku radiant 5K |
+| `matrix-digital-rain-6500x3520.jpg` | 6500x3520 | Matrix digital rain cyan |
 
 **Note:** Wallpapers are a compilation found from free sources online.
 
@@ -101,7 +102,7 @@ The theme includes 10 carefully selected cyberpunk-themed wallpapers:
 
 ```
 cyberpunk-cyan/
-├── backgrounds/          # 11 wallpapers
+├── backgrounds/          # 11 unique wallpapers
 ├── colors.toml          # Base color palette
 ├── waybar.css           # Waybar color variables
 ├── btop.theme           # System monitor theme
@@ -114,12 +115,14 @@ cyberpunk-cyan/
 ├── hyprland.conf        # Window manager borders
 ├── alacritty.toml       # Alacritty terminal colors
 ├── kitty.conf           # Kitty terminal colors
-├── ghostty.conf         # Ghostty terminal colors
+├── ghostty.conf         # Ghostty complete configuration (colors + settings)
 ├── swayosd.css          # OSD styling
 ├── obsidian.css         # Obsidian app theme
 ├── chromium.theme       # Chromium browser theme
 ├── keyboard.rgb         # Keyboard RGB colors
 ├── hyprland-preview-share-picker.css  # Screen share picker
+├── shaders/             # Cyberpunk 2077 screen shader
+│   └── cyberpunk2077.frag
 └── preview.png          # Theme preview screenshot
 ```
 
