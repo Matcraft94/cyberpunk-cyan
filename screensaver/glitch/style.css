@@ -1,0 +1,214 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  background: #0a0a0f;
+  overflow: hidden;
+  font-family: 'JetBrainsMono Nerd Font', 'Fira Code', 'Consolas', monospace;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+}
+
+.ascii-art {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.12;
+  font-size: clamp(10px, 1.5vw, 20px);
+  color: #00ffff;
+  text-shadow:
+    0 0 6px rgba(0, 255, 255, 0.45),
+    0 0 18px rgba(0, 255, 255, 0.25);
+}
+
+.glitch-line {
+  position: relative;
+  display: inline-block;
+  white-space: pre;
+  color: #00ffff;
+  --delay: 0s;
+  --duration: 2.2s;
+  animation:
+    line-jitter calc(var(--duration) * 1.5) var(--delay) infinite steps(1),
+    line-flicker calc(var(--duration) * 2.5) var(--delay) infinite steps(2);
+}
+
+/* Cyan layer (top slice) */
+.glitch-line::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0a0a0f;
+  white-space: pre;
+  pointer-events: none;
+  left: -2px;
+  text-shadow: -2px 0 #00ffff, 2px 0 rgba(0, 255, 255, 0.35);
+  clip-path: inset(0 0 60% 0);
+  animation:
+    glitch-cyan calc(var(--duration) * 0.8) var(--delay) infinite steps(5) alternate-reverse,
+    cyan-shift calc(var(--duration) * 1.1) var(--delay) infinite steps(4);
+}
+
+/* Magenta/pink layer (bottom slice) */
+.glitch-line::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0a0a0f;
+  white-space: pre;
+  pointer-events: none;
+  left: 2px;
+  text-shadow: 2px 0 #ff2a6d, -2px 0 rgba(255, 0, 255, 0.45);
+  clip-path: inset(40% 0 0 0);
+  animation:
+    glitch-magenta calc(var(--duration) * 0.9) var(--delay) infinite steps(6) alternate-reverse,
+    magenta-shift calc(var(--duration) * 1.2) var(--delay) infinite steps(5);
+}
+
+@keyframes line-jitter {
+  0%, 90%, 100% { transform: translate(0, 0); }
+  92% { transform: translate(-2px, 1px); }
+  94% { transform: translate(2px, -1px); }
+  96% { transform: translate(-1px, 0); }
+}
+
+@keyframes line-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.92; }
+  75% { opacity: 0.98; }
+}
+
+@keyframes glitch-cyan {
+  0%  { clip-path: inset(10% 0 75% 0); }
+  20% { clip-path: inset(35% 0 45% 0); }
+  40% { clip-path: inset(5% 0 80% 0); }
+  60% { clip-path: inset(55% 0 25% 0); }
+  80% { clip-path: inset(20% 0 60% 0); }
+  100%{ clip-path: inset(45% 0 30% 0); }
+}
+
+@keyframes cyan-shift {
+  0%, 100% { transform: translate(-2px, 0); }
+  20% { transform: translate(-5px, 0); }
+  40% { transform: translate(3px, 0); }
+  60% { transform: translate(-4px, 0); }
+  80% { transform: translate(2px, 0); }
+}
+
+@keyframes glitch-magenta {
+  0%  { clip-path: inset(60% 0 10% 0); }
+  20% { clip-path: inset(25% 0 55% 0); }
+  40% { clip-path: inset(75% 0 5% 0); }
+  60% { clip-path: inset(15% 0 65% 0); }
+  80% { clip-path: inset(50% 0 20% 0); }
+  100%{ clip-path: inset(30% 0 45% 0); }
+}
+
+@keyframes magenta-shift {
+  0%, 100% { transform: translate(2px, 0); }
+  20% { transform: translate(5px, 0); }
+  40% { transform: translate(-3px, 0); }
+  60% { transform: translate(4px, 0); }
+  80% { transform: translate(-2px, 0); }
+}
+
+/* Random heavy skew bursts */
+.glitch-line:nth-child(3n)::before,
+.glitch-line:nth-child(3n)::after {
+  animation-name: glitch-cyan, cyan-shift, skew-burst;
+  animation-duration: calc(var(--duration) * 0.8), calc(var(--duration) * 1.1), 3s;
+  animation-timing-function: steps(5), steps(4), steps(1);
+  animation-iteration-count: infinite, infinite, infinite;
+  animation-direction: alternate-reverse, alternate-reverse, normal;
+}
+
+@keyframes skew-burst {
+  0%, 85%, 100% { transform: skew(0deg) translate(0,0); }
+  87% { transform: skew(-2deg) translate(-4px, 0); }
+  89% { transform: skew(2deg) translate(4px, 0); }
+  91% { transform: skew(0deg) translate(0,0); }
+}
+
+/* Scanlines overlay */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(10, 10, 15, 0) 0px,
+    rgba(10, 10, 15, 0) 2px,
+    rgba(0, 0, 0, 0.35) 2px,
+    rgba(0, 0, 0, 0.35) 4px
+  );
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.55;
+  animation: scanline-flicker 4s infinite steps(2);
+}
+
+@keyframes scanline-flicker {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 0.45; }
+}
+
+/* CRT vignette + subtle cyan glow */
+.glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background:
+    radial-gradient(circle at center, rgba(0, 255, 255, 0.04) 0%, transparent 60%),
+    radial-gradient(circle at center, transparent 50%, rgba(0, 0, 0, 0.55) 100%);
+  pointer-events: none;
+  z-index: 40;
+}
+
+/* Horizontal noise bars (occasional) */
+.noise-bar {
+  position: fixed;
+  left: 0;
+  width: 100vw;
+  height: 2px;
+  background: rgba(0, 255, 255, 0.15);
+  pointer-events: none;
+  z-index: 45;
+  opacity: 0;
+  animation: noise-move 3s linear infinite;
+}
+
+.noise-bar:nth-child(1) { top: 20%; animation-delay: 0s; }
+.noise-bar:nth-child(2) { top: 55%; animation-delay: 1.2s; background: rgba(255, 42, 109, 0.15); }
+.noise-bar:nth-child(3) { top: 80%; animation-delay: 2.5s; }
+
+@keyframes noise-move {
+  0% { transform: translateY(0); opacity: 0; }
+  10% { opacity: 0.6; }
+  20% { opacity: 0; }
+  30% { opacity: 0.4; }
+  40% { opacity: 0; }
+  100% { transform: translateY(20px); opacity: 0; }
+}

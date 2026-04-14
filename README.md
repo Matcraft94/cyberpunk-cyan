@@ -75,6 +75,33 @@ mouse-scroll-multiplier = 0.95
 - **11 unique cyberpunk wallpapers** in various resolutions (1080p to 5K)
 - **Hyprlock** screen lock theme
 - **SwayOSD** on-screen display styling
+- **Optional glitch screensaver** - WebKit2GTK-based cyberpunk glitch effect with the OMARCHY ASCII art, cyan/magenta chromatic aberration, and CRT scanlines (cursor stays visible)
+
+## Cyberpunk Glitch Screensaver (Optional)
+
+An animated glitch screensaver inspired by [Jhey Tompkins' CodePen](https://codepen.io/jh3y/pen/jOOQjYP) is included as an optional add-on. It replaces the default `tte`-based Omarchy screensaver with a lightweight WebKit2GTK window that renders the OMARCHY ASCII art with cyberpunk-style chromatic aberration, scanlines, and random glitch bursts.
+
+**Requirements:**
+- `python-gobject` and `webkit2gtk-4.1` installed (standard on most Arch/GTK systems)
+
+**Install:**
+```bash
+cd ~/.config/omarchy/themes/cyberpunk-cyan/screensaver
+./install.sh
+```
+
+**Uninstall / Restore original:**
+```bash
+cd ~/.config/omarchy/themes/cyberpunk-cyan/screensaver
+./uninstall.sh
+```
+
+**Test it immediately:**
+```bash
+omarchy-launch-screensaver force
+```
+
+> The screensaver closes automatically on any key press or mouse movement, and **does not hide the mouse cursor**.
 
 ## Wallpapers
 
@@ -121,6 +148,13 @@ cyberpunk-cyan/
 ├── chromium.theme       # Chromium browser theme
 ├── keyboard.rgb         # Keyboard RGB colors
 ├── hyprland-preview-share-picker.css  # Screen share picker
+├── screensaver/         # Optional cyberpunk glitch screensaver
+│   ├── install.sh
+│   ├── uninstall.sh
+│   ├── glitch-screensaver.py
+│   └── glitch/
+│       ├── index.html
+│       └── style.css
 ├── shaders/             # Cyberpunk 2077 screen shader
 │   └── cyberpunk2077.frag
 └── preview.png          # Theme preview screenshot
